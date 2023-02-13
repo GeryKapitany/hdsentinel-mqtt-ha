@@ -299,7 +299,7 @@ def main():
 
     for disk_serial_number, values in disks.items():
         _LOGGER.info(f"key: {disk_serial_number}, value: {disks[disk_serial_number]}")
-        alias = to_snake_case(values["Hard_Disk_Model_ID"])
+        alias = to_snake_case(values["Hard_Disk_Serial_Number"])
         _LOGGER.info(f"Get initial data from hdsentinel... {alias}")
         mqtt_client = HaCapableMqttClient(
             f"{MQTT_TOPIC}/{alias}",
@@ -312,7 +312,7 @@ def main():
         config = Config(
             disk_serial_number,
             alias,
-            values["Hard_Disk_Model_ID"],
+            values["Hard_Disk_Serial_Number"],
             values["Firmware_Revision"],
             mqtt_topic,
             mqtt_client.status_topic,
@@ -345,7 +345,7 @@ def main():
             disks = get_disks()
 
             for disk_serial_number, values in disks.items():
-                alias = to_snake_case(values["Hard_Disk_Model_ID"])
+                alias = to_snake_case(values["Hard_Disk_Serial_Number"])
 
                 mqtt_client = HaCapableMqttClient(
                     f"{MQTT_TOPIC}/{alias}",
